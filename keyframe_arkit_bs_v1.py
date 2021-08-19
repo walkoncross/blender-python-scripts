@@ -108,7 +108,14 @@ def insert_pose_keyframe_at(bpy_obj_name, pose_data_list, frame_id=1):
         )
 
 
-def keyframe_arkit_bs_from_csv_file(csv_path, start_frame=1):
+def keyframe_arkit_bs_from_csv_file(
+        head_mesh_name, 
+        csv_path, 
+        start_frame=1, 
+        time_downsample_rate=2,
+        teeth_mesh_name=None,
+        armature_name=None,
+    ):
     """Read arkit bs list from a .csv file and keyframe them on to a rigged character.
 
     csv_path:      input .csv file with LiveLinkeFace-captured ARKit BS.
@@ -117,7 +124,7 @@ def keyframe_arkit_bs_from_csv_file(csv_path, start_frame=1):
     # df_dict_list = dataframe.to_dict('index')
 
     # time_downsample_rate = 2  # 60fps->30fps
-    time_downsample_rate = 1
+    # time_downsample_rate = 1
     frame_num = dataframe.shape[0] // time_downsample_rate
 
     # livelikeface_data_keys = dataframe.keys().to_list()
@@ -131,22 +138,20 @@ def keyframe_arkit_bs_from_csv_file(csv_path, start_frame=1):
 
         # print('arkit_bs: ')
         # print(arkit_bs)
+        if head_mesh_name and head_mesh_name in bpy.data.objects.keys():
+            insert_bs_keyframe_at(head_mesh_name, arkit_bs, cur_key_frame_id)
+        
+        if teeth_mesh_name and teeth_mesh_name in bpy.data.objects.keys():
+            insert_bs_keyframe_at(teeth_mesh_name, arkit_bs, cur_key_frame_id)
 
-        bpy_obj_name = 'Wolf3D_Head'
-        insert_bs_keyframe_at(bpy_obj_name, arkit_bs, cur_key_frame_id)
+        if armature_name and armature_name in bpy.data.armatures.keys():
+            pose_data = frame_data[-9:]
 
-        bpy_obj_name = 'Wolf3D_Teeth'
-        insert_bs_keyframe_at(bpy_obj_name, arkit_bs, cur_key_frame_id)
+            # print('Pose Data: ')
+            # print(pose_data.to_dict())
 
-        pose_data = frame_data[-9:]
-
-        # print('Pose Data: ')
-        # print(pose_data.to_dict())
-
-        pose_data_list = pose_data.to_list()
-        bpy_obj_name = 'AvatarRoot'
-
-        insert_pose_keyframe_at(bpy_obj_name, pose_data_list, cur_key_frame_id)
+            pose_data_list = pose_data.to_list()
+            insert_pose_keyframe_at(armature_name, pose_data_list, cur_key_frame_id)
 
     bpy.ops.object.mode_set(mode='OBJECT', toggle=False)
 
@@ -154,26 +159,43 @@ def keyframe_arkit_bs_from_csv_file(csv_path, start_frame=1):
 
 
 def clear_animation_data(bpy_obj_name):
-    bpy_obj = bpy.data.objects[bpy_obj_name]
-    bpy_obj.animation_data_clear()
+    if bpy_obj_name and bpy_obj_name in bpy.data.objects.keys():
+        bpy_obj = bpy.data.objects[bpy_obj_name]
+        bpy_obj.animation_data_clear()
 
 
-def clear_all_animation_data():
-    bpy_obj_name = 'AvatarRoot'
-    clear_animation_data(bpy_obj_name)
+# def clear_all_animation_data():
+#     bpy_obj_name = 'AvatarRoot'
+#     clear_animation_data(bpy_obj_name)
 
 
 if __name__ == "__main__":
+    head_mesh_name = 'Wolf3D_Head'
+    teeth_mesh_name = 'Wolf3D_Teeth'
+    armature_name = 'AvatarRoot'
+    time_downsample_rate = 2 # 60fps -> 30 fps
+    
+    start_frame = 1
+
+    clear_animation_data(head_mesh_name)
+    clear_animation_data(teeth_mesh_name)
+    clear_animation_data(armature_name)
+
     # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_bs_conversion/20210112_MySlate_2/MySlate_2_JAMESs_iPhone12Pro.csv'
     csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_bs_conversion/20210129_MySlate_3/MySlate_3_JAMESs_iPhone12Pro.csv'
     # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace/20210812_MySlate_8/MySlate_8_JZs_iPhone12Pro.csv'
     # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace/20210812_MySlate_9/MySlate_9_JZs_iPhone12Pro.csv'
     # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace/20210812_MySlate_11/MySlate_11_JZs_iPhone12Pro.csv'
-    clear_all_animation_data()
 
-    end_frame = keyframe_arkit_bs_from_csv_file(csv_path)
+    end_frame = keyframe_arkit_bs_from_csv_file(
+                    head_mesh_name, 
+                    csv_path, 
+                    start_frame, 
+                    time_downsample_rate, 
+                    teeth_mesh_name, 
+                    armature_name)
 
-    # end_frame = 0
+    print('===> end_frame: ', end_frame)
 
     # bpy_obj_name = 'Wolf3D_Head'
 
@@ -186,6 +208,17 @@ if __name__ == "__main__":
         r'/Users/zhaoyafei/Downloads/LiveLinkFace/20210812_MySlate_11/MySlate_11_JZs_iPhone12Pro.csv'
     ]
 
+    start_frame =  end_frame + 15
+
     for csv_path in csv_path_list:
         # clear_all_animation_data()
-        end_frame = keyframe_arkit_bs_from_csv_file(csv_path, end_frame+15)
+        end_frame = keyframe_arkit_bs_from_csv_file(
+                        head_mesh_name, 
+                        csv_path, 
+                        start_frame, 
+                        time_downsample_rate, 
+                        teeth_mesh_name, 
+                        armature_name)
+        start_frame =  end_frame + 15
+
+        print('===> end_frame: ', end_frame)
