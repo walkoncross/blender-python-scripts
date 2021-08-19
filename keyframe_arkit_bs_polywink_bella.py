@@ -170,32 +170,11 @@ if __name__ == "__main__":
     clear_animation_data(head_mesh_name)
     clear_animation_data(armature_name)
 
-    start_frame = 0
+    start_frame = 1
 
-    # bpy_obj_name = 'Wolf3D_Head'
-
-    # for i in range(30):
-    #     print_bs_keyframe_at(bpy_obj_name)
-
-    csv_path_list = [
-        r'/Users/zhaoyafei/Downloads/LiveLinkFace/20210812_MySlate_8/MySlate_8_JZs_iPhone12Pro.csv',
-        r'/Users/zhaoyafei/Downloads/LiveLinkFace/20210812_MySlate_9/MySlate_9_JZs_iPhone12Pro.csv',
-        r'/Users/zhaoyafei/Downloads/LiveLinkFace/20210812_MySlate_11/MySlate_11_JZs_iPhone12Pro.csv'
-    ]
-
-    for csv_path in csv_path_list:
-        # clear_all_animation_data()
-        end_frame = keyframe_arkit_bs_from_csv_file(
-                        head_mesh_name, 
-                        csv_path, 
-                        start_frame, 
-                        time_downsample_rate, 
-                        teeth_mesh_name, 
-                        armature_name)
-
-        start_frame =  end_frame + 15
-
-        print('===> end_frame: ', end_frame)
+    clear_animation_data(head_mesh_name)
+    clear_animation_data(teeth_mesh_name)
+    clear_animation_data(armature_name)
 
     # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_bs_conversion/20210112_MySlate_2/MySlate_2_JAMESs_iPhone12Pro.csv'
     csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_bs_conversion/20210129_MySlate_3/MySlate_3_JAMESs_iPhone12Pro.csv'
@@ -212,3 +191,29 @@ if __name__ == "__main__":
                     armature_name)
 
     print('===> end_frame: ', end_frame)
+
+    # bpy_obj_name = 'Wolf3D_Head'
+
+    # for i in range(30):
+    #     print_bs_keyframe_at(bpy_obj_name)
+
+    csv_path_list = [
+        r'/Users/zhaoyafei/Downloads/LiveLinkFace/20210812_MySlate_8/MySlate_8_JZs_iPhone12Pro.csv',
+        r'/Users/zhaoyafei/Downloads/LiveLinkFace/20210812_MySlate_9/MySlate_9_JZs_iPhone12Pro.csv',
+        r'/Users/zhaoyafei/Downloads/LiveLinkFace/20210812_MySlate_11/MySlate_11_JZs_iPhone12Pro.csv'
+    ]
+
+    start_frame =  end_frame + 15
+
+    for csv_path in csv_path_list:
+        # clear_all_animation_data()
+        end_frame = keyframe_arkit_bs_from_csv_file(
+                        head_mesh_name, 
+                        csv_path, 
+                        start_frame, 
+                        time_downsample_rate, 
+                        teeth_mesh_name, 
+                        armature_name)
+        start_frame =  end_frame + 15
+
+        print('===> end_frame: ', end_frame)
