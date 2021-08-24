@@ -12,7 +12,7 @@ def set_minmax_range_for_shape_key(bpy_obj, key_name, min=0, max=1.0):
     print('---> mesh: {}'.format(bpy_obj.name))
     print('---> min: {}'.format(min))
     print('---> max: {}'.format(max))
-     
+
     # bpy_obj = bpy.data.objects[mesh_obj_name]
 
     # setting the active shapekey
@@ -30,7 +30,7 @@ def set_minmax_range_for_all_shape_key(bpy_obj, min=0, max=1.0):
     print('---> mesh: {}'.format(bpy_obj.name))
     print('---> min: {}'.format(min))
     print('---> max: {}'.format(max))
-    
+
     # bpy_obj = bpy.data.objects[mesh_obj_name]
 
     # setting the active shapekey

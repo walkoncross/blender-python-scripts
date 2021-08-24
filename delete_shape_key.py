@@ -10,7 +10,7 @@ def delete_shape_key_by_name(bpy_obj, key_name):
     """
     print('===> delete_shape_key_by_name(): ')
     print('---> Try to delete shape_key: {} from {}'.format(key_name, bpy_obj.name))
-    
+
     # setting the active shapekey
     index = bpy_obj.data.shape_keys.key_blocks.keys().index(key_name)
     bpy_obj.active_shape_key_index = index

@@ -15,11 +15,11 @@ def add_shape_key_from_another_object(basis_obj, another_obj):
 
     print('---> basis object name: ', basis_obj.name)
     print('---> another object name: ', another_obj.name)
-    
+
     # select
     another_obj.select_set(True)
     basis_obj.select_set(True)
-    
+
     bpy.context.view_layer.objects.active = basis_obj
 
     state = bpy.ops.object.join_shapes()

@@ -101,13 +101,13 @@ def insert_pose_keyframe_at(bpy_obj_name, pose_data_list, frame_id=1):
 
 
 def keyframe_arkit_bs_from_csv_file(
-        head_mesh_name, 
-        csv_path, 
-        start_frame=1, 
-        time_downsample_rate=2,
-        teeth_mesh_name=None,
-        armature_name=None,
-    ):
+    head_mesh_name,
+    csv_path,
+    start_frame=1,
+    time_downsample_rate=2,
+    teeth_mesh_name=None,
+    armature_name=None,
+):
     """Read arkit bs list from a .csv file and keyframe them on to a rigged character.
 
     csv_path:      input .csv file with LiveLinkeFace-captured ARKit BS.
@@ -132,7 +132,7 @@ def keyframe_arkit_bs_from_csv_file(
         # print(arkit_bs)
         if head_mesh_name and head_mesh_name in bpy.data.objects.keys():
             insert_bs_keyframe_at(head_mesh_name, arkit_bs, cur_key_frame_id)
-        
+
         if teeth_mesh_name and teeth_mesh_name in bpy.data.objects.keys():
             insert_bs_keyframe_at(teeth_mesh_name, arkit_bs, cur_key_frame_id)
 
@@ -143,7 +143,8 @@ def keyframe_arkit_bs_from_csv_file(
             # print(pose_data.to_dict())
 
             pose_data_list = pose_data.to_list()
-            insert_pose_keyframe_at(armature_name, pose_data_list, cur_key_frame_id)
+            insert_pose_keyframe_at(
+                armature_name, pose_data_list, cur_key_frame_id)
 
     bpy.ops.object.mode_set(mode='OBJECT', toggle=False)
 
@@ -165,7 +166,7 @@ if __name__ == "__main__":
     head_mesh_name = 'POLYWINK_Bella.001'
     teeth_mesh_name = ''
     armature_name = 'Armature'
-    time_downsample_rate = 2 # 60fps -> 30 fps
+    time_downsample_rate = 2  # 60fps -> 30 fps
 
     clear_animation_data(head_mesh_name)
     clear_animation_data(armature_name)
@@ -183,12 +184,12 @@ if __name__ == "__main__":
     # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace/20210812_MySlate_11/MySlate_11_JZs_iPhone12Pro.csv'
 
     end_frame = keyframe_arkit_bs_from_csv_file(
-                    head_mesh_name, 
-                    csv_path, 
-                    start_frame, 
-                    time_downsample_rate, 
-                    teeth_mesh_name, 
-                    armature_name)
+        head_mesh_name,
+        csv_path,
+        start_frame,
+        time_downsample_rate,
+        teeth_mesh_name,
+        armature_name)
 
     print('===> end_frame: ', end_frame)
 
@@ -203,17 +204,17 @@ if __name__ == "__main__":
         r'/Users/zhaoyafei/Downloads/LiveLinkFace/20210812_MySlate_11/MySlate_11_JZs_iPhone12Pro.csv'
     ]
 
-    start_frame =  end_frame + 15
+    start_frame = end_frame + 15
 
     for csv_path in csv_path_list:
         # clear_all_animation_data()
         end_frame = keyframe_arkit_bs_from_csv_file(
-                        head_mesh_name, 
-                        csv_path, 
-                        start_frame, 
-                        time_downsample_rate, 
-                        teeth_mesh_name, 
-                        armature_name)
-        start_frame =  end_frame + 15
+            head_mesh_name,
+            csv_path,
+            start_frame,
+            time_downsample_rate,
+            teeth_mesh_name,
+            armature_name)
+        start_frame = end_frame + 15
 
         print('===> end_frame: ', end_frame)

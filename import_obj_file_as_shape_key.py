@@ -13,12 +13,13 @@ def print_mesh_vertex(mesh_obj, first_n=8):
     print('---> mesh object: ', mesh_obj.name)
     if isinstance(mesh_obj, str):
         mesh_obj = bpy.data.objects(mesh_obj)
-    
-    if first_n<0:
+
+    if first_n < 0:
         first_n = 8
-    
+
     for ii in range(first_n):
-        print('---> vertices[{}].co = {}'.format(ii, mesh_obj.data.vertices[ii].co))
+        print('---> vertices[{}].co = {}'.format(ii,
+              mesh_obj.data.vertices[ii].co))
 
 
 def import_obj_file(file_path, apply_transform=False):
@@ -32,21 +33,21 @@ def import_obj_file(file_path, apply_transform=False):
     # Load a Wavefront OBJ File
 
     # Parameters
-        # filepath (string, (optional, never None)) – File Path, Filepath used for importing the file
-        # filter_glob (string, (optional, never None)) – filter_glob
-        # use_edges (boolean, (optional)) – Lines, Import lines and faces with 2 verts as edge
-        # use_smooth_groups (boolean, (optional)) – Smooth Groups, Surround smooth groups by sharp edges
-        # use_split_objects (boolean, (optional)) – Object, Import OBJ Objects into Blender Objects
-        # use_split_groups (boolean, (optional)) – Group, Import OBJ Groups into Blender Objects
-        # use_groups_as_vgroups (boolean, (optional)) – Poly Groups, Import OBJ groups as vertex groups
-        # use_image_search (boolean, (optional)) – Image Search, Search subdirs for any associated images (Warning, may be slow)
-        # split_mode (enum in ['ON', 'OFF'], (optional)) –
-            # Split
-            # ON Split, Split geometry, omits unused verts.
-            # OFF Keep Vert Order, Keep vertex order from file.
-        # global_clamp_size (float in [0, 1000], (optional)) – Clamp Size, Clamp bounds under this value (zero to disable)
-        # axis_forward (enum in ['X', 'Y', 'Z', '-X', '-Y', '-Z'], (optional)) – Forward
-        # axis_up (enum in ['X', 'Y', 'Z', '-X', '-Y', '-Z'], (optional)) – Up
+    # filepath (string, (optional, never None)) – File Path, Filepath used for importing the file
+    # filter_glob (string, (optional, never None)) – filter_glob
+    # use_edges (boolean, (optional)) – Lines, Import lines and faces with 2 verts as edge
+    # use_smooth_groups (boolean, (optional)) – Smooth Groups, Surround smooth groups by sharp edges
+    # use_split_objects (boolean, (optional)) – Object, Import OBJ Objects into Blender Objects
+    # use_split_groups (boolean, (optional)) – Group, Import OBJ Groups into Blender Objects
+    # use_groups_as_vgroups (boolean, (optional)) – Poly Groups, Import OBJ groups as vertex groups
+    # use_image_search (boolean, (optional)) – Image Search, Search subdirs for any associated images (Warning, may be slow)
+    # split_mode (enum in ['ON', 'OFF'], (optional)) –
+    # Split
+    # ON Split, Split geometry, omits unused verts.
+    # OFF Keep Vert Order, Keep vertex order from file.
+    # global_clamp_size (float in [0, 1000], (optional)) – Clamp Size, Clamp bounds under this value (zero to disable)
+    # axis_forward (enum in ['X', 'Y', 'Z', '-X', '-Y', '-Z'], (optional)) – Forward
+    # axis_up (enum in ['X', 'Y', 'Z', '-X', '-Y', '-Z'], (optional)) – Up
 
     state = bpy.ops.import_scene.obj(filepath=file_path, split_mode='OFF')
     if 'FINISHED' in state:
@@ -54,12 +55,13 @@ def import_obj_file(file_path, apply_transform=False):
         print('---> Imported object name: ', obj_object.name)
 
         if apply_transform:
-            bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+            bpy.ops.object.transform_apply(
+                location=True, rotation=True, scale=True)
     else:
         print('---> Error: Failed to import .obj file')
 
         obj_object = None
-    
+
     return obj_object
 
 
@@ -73,11 +75,11 @@ def add_shape_key_from_another_object(basis_obj, another_obj):
 
     print('---> basis object name: ', basis_obj.name)
     print('---> another object name: ', another_obj.name)
-    
+
     # select
     another_obj.select_set(True)
     basis_obj.select_set(True)
-    
+
     bpy.context.view_layer.objects.active = basis_obj
 
     state = bpy.ops.object.join_shapes()
@@ -126,12 +128,12 @@ def rename_shape_key(bpy_obj, key_name, new_key_name):
 
 
 def import_obj_file_as_shape_key(
-        file_path, 
-        basis_mesh_obj_name, 
-        shape_key_name=None,
-        apply_transform=True, 
-        replace = False,
-    ):
+    file_path,
+    basis_mesh_obj_name,
+    shape_key_name=None,
+    apply_transform=True,
+    replace=False,
+):
     """Import .obj file as a bpy object and make a shape key from imported object for basis_mesh_obj_name
 
     """
@@ -144,7 +146,8 @@ def import_obj_file_as_shape_key(
     basis_mesh_obj = bpy.data.objects[basis_mesh_obj_name]
     shape_keys = basis_mesh_obj.data.shape_keys.key_blocks.keys()
 
-    new_shape_key = add_shape_key_from_another_object(basis_mesh_obj, imported_obj)
+    new_shape_key = add_shape_key_from_another_object(
+        basis_mesh_obj, imported_obj)
     print('---> Temp shape_key name: ', new_shape_key)
 
     if new_shape_key:
@@ -152,7 +155,8 @@ def import_obj_file_as_shape_key(
             delete_shape_key_by_name(basis_mesh_obj, shape_key_name)
 
         if shape_key_name:
-            new_shape_key = rename_shape_key(basis_mesh_obj, new_shape_key, shape_key_name)
+            new_shape_key = rename_shape_key(
+                basis_mesh_obj, new_shape_key, shape_key_name)
 
     print('---> Final shape_key name: ', new_shape_key)
 
@@ -171,23 +175,22 @@ def import_obj_file_as_shape_key(
 
 
 def import_multi_objs_as_shape_keys(
-        obj_folder_path, 
-        basis_mesh_obj_name, 
-        apply_transform=False, 
-        replace=False,
-    ):
+    obj_folder_path,
+    basis_mesh_obj_name,
+    apply_transform=False,
+    replace=False,
+):
     obj_file_list = glob.glob(obj_folder_path + '/*.obj')
 
     for obj_file in obj_file_list:
         shape_key_name = osp.splitext(osp.basename(obj_file))[0]
-    
-        import_obj_file_as_shape_key(
-            obj_file, 
-            basis_mesh_obj_name, 
-            shape_key_name, 
-            apply_transform=apply_transform, 
-            replace=replace)
 
+        import_obj_file_as_shape_key(
+            obj_file,
+            basis_mesh_obj_name,
+            shape_key_name,
+            apply_transform=apply_transform,
+            replace=replace)
 
 
 if __name__ == '__main__':
@@ -200,18 +203,18 @@ if __name__ == '__main__':
     # basis_mesh_obj_name = 'POLYWINK_Bella'
 
     # import_obj_file_as_shape_key(
-    #     obj_file, 
-    #     basis_mesh_obj_name, 
-    #     shape_key_name, 
-    #     apply_transform=False, 
+    #     obj_file,
+    #     basis_mesh_obj_name,
+    #     shape_key_name,
+    #     apply_transform=False,
     #     replace=True,
     #     )
-    
+
     obj_folder_path = '/Users/zhaoyafei/work/blender-python-scripts-zyf/blendshapes-bella'
     basis_mesh_obj_name = 'POLYWINK_Bella'
     import_multi_objs_as_shape_keys(
-            obj_folder_path, 
-            basis_mesh_obj_name, 
-            apply_transform=False, 
-            replace=True,
-        )
+        obj_folder_path,
+        basis_mesh_obj_name,
+        apply_transform=False,
+        replace=True,
+    )
