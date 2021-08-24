@@ -1,10 +1,12 @@
-# Export all Shape Keys as OBJs in Blender
-# Version 1.0 – August 2017
-# =========================================
-# Original Script by Tlousky
-# https://blender.stackexchange.com/questions/86674/how-to-batch-export-shapekeys-as-obj-from-the-active-object/86678#86678
-# with small tweaks by Jay Versluis
-# https://www.versluis.com
+"""
+Export all Shape Keys as OBJs in Blender
+Version 1.0 – August 2017
+=========================================
+Original Script by Tlousky
+https://blender.stackexchange.com/questions/86674/how-to-batch-export-shapekeys-as-obj-from-the-active-object/86678#86678
+with small tweaks by Jay Versluis
+https://www.versluis.com
+"""
 
 import bpy
 import os
@@ -16,7 +18,7 @@ obj = bpy.context.active_object
 
 # CHANGE THIS to the folder you want to save your OBJ files in
 # NOTE: no spaces, no trailing slash
-exportPath = "/Users/zhaoyafei/work/blender-python-scripts-zyf/blendshapes-bella"
+exportPath = "./exported_blendshape_objs"
 
 if not osp.exists(exportPath):
     os.makedirs(exportPath)
