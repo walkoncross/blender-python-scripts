@@ -26,6 +26,9 @@ def print_bs_keyframe_at(bpy_obj_name, frame_id=0):
 
 
 def insert_bs_keyframe_at(bpy_obj_name, data_dict, frame_id=1):
+    """
+    Keyframe blendshape data from .csv file exported from LiveLinkFace
+    """
     bpy_obj = bpy.data.objects[bpy_obj_name]
     # print('='*32)
     # print(data_dict.keys())
@@ -62,7 +65,7 @@ def insert_bs_keyframe_at(bpy_obj_name, data_dict, frame_id=1):
 
 def insert_pose_keyframe_at(bpy_obj_name, pose_data_list, frame_id=1):
     """
-
+    Keyframe pose data from .csv file exported from LiveLinkFace
     """
     bone_name_list = ['Head', 'LeftEye', 'RightEye']
 
@@ -81,14 +84,11 @@ def insert_pose_keyframe_at(bpy_obj_name, pose_data_list, frame_id=1):
     for i, bone_name in enumerate(bone_name_list):
         offset = i*3
 
-        # Intrisic Rotation Order in UE4's object local space: -Z/Y/X = [yaw, pitch, roll]
-        # Corres. intrinsic order in Blender's world space: Z/-X/-Y = [yaw, pitch, roll], extrinsic order in Blender: Y/-X/Z
+        # LiveLinkFace's [yaw, pitch, roll] corresponds to Intrisic Rotation Order in UE4's object local space: Z/Y/-X
+        # Corres. intrinsic order in Blender's world space: -Z/-X/Y = [yaw, pitch, roll], extrinsic order in Blender: Y/-X/-Z
         r1, r2, r3 = pose_data_list[offset:offset+3]
-
-        # depends on blender's world axes, consider it's the same as Blender's world space
-        xyz_angles = [-r2, -r3, r1]
+        xyz_angles = [-r2, r3, -r1]
         rot_order = 'ZXY'
-
         # create a new euler with default axis rotation order
         # mathutils.Euler() uses extrinsic rotation order, but the input angles are always in 'xyz' order
         eul = mathutils.Euler(xyz_angles, rot_order[::-1])
@@ -182,11 +182,11 @@ if __name__ == "__main__":
     clear_animation_data(teeth_mesh_name)
     clear_animation_data(armature_name)
 
-    # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_bs_conversion/20210112_MySlate_2/MySlate_2_JAMESs_iPhone12Pro.csv'
-    csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_bs_conversion/20210129_MySlate_3/MySlate_3_JAMESs_iPhone12Pro.csv'
-    # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace/20210812_MySlate_8/MySlate_8_JZs_iPhone12Pro.csv'
-    # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace/20210812_MySlate_9/MySlate_9_JZs_iPhone12Pro.csv'
-    # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace/20210812_MySlate_11/MySlate_11_JZs_iPhone12Pro.csv'
+    # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/LiveLinkFace_bs_conversion/20210112_MySlate_2/MySlate_2_JAMESs_iPhone12Pro.csv'
+    csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/LiveLinkFace_bs_conversion/20210129_MySlate_3/MySlate_3_JAMESs_iPhone12Pro.csv'
+    # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/LiveLinkFace/20210812_MySlate_8/MySlate_8_JZs_iPhone12Pro.csv'
+    # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/LiveLinkFace/20210812_MySlate_9/MySlate_9_JZs_iPhone12Pro.csv'
+    # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/LiveLinkFace/20210812_MySlate_11/MySlate_11_JZs_iPhone12Pro.csv'
 
     end_frame = keyframe_arkit_bs_from_csv_file(
         head_mesh_name,
@@ -204,9 +204,9 @@ if __name__ == "__main__":
     #     print_bs_keyframe_at(bpy_obj_name)
 
     csv_path_list = [
-        r'/Users/zhaoyafei/Downloads/LiveLinkFace/20210812_MySlate_8/MySlate_8_JZs_iPhone12Pro.csv',
-        r'/Users/zhaoyafei/Downloads/LiveLinkFace/20210812_MySlate_9/MySlate_9_JZs_iPhone12Pro.csv',
-        r'/Users/zhaoyafei/Downloads/LiveLinkFace/20210812_MySlate_11/MySlate_11_JZs_iPhone12Pro.csv'
+        r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/LiveLinkFace/20210812_MySlate_8/MySlate_8_JZs_iPhone12Pro.csv',
+        r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/LiveLinkFace/20210812_MySlate_9/MySlate_9_JZs_iPhone12Pro.csv',
+        r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/LiveLinkFace/20210812_MySlate_11/MySlate_11_JZs_iPhone12Pro.csv'
     ]
 
     start_frame = end_frame + 15
