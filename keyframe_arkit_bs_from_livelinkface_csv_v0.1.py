@@ -179,11 +179,11 @@ if __name__ == "__main__":
     clear_animation_data(teeth_mesh_name)
     clear_animation_data(armature_name)
 
-    # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/LiveLinkFace_bs_conversion/20210112_MySlate_2/MySlate_2_JAMESs_iPhone12Pro.csv'
-    csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/LiveLinkFace_bs_conversion/20210129_MySlate_3/MySlate_3_JAMESs_iPhone12Pro.csv'
-    # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/LiveLinkFace/20210812_MySlate_8/MySlate_8_JZs_iPhone12Pro.csv'
-    # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/LiveLinkFace/20210812_MySlate_9/MySlate_9_JZs_iPhone12Pro.csv'
-    # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/LiveLinkFace/20210812_MySlate_11/MySlate_11_JZs_iPhone12Pro.csv'
+    # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/20210112_MySlate_2/MySlate_2_JAMESs_iPhone12Pro.csv'
+    csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/20210129_MySlate_3/MySlate_3_JAMESs_iPhone12Pro.csv'
+    # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/20210812_MySlate_8/MySlate_8_JZs_iPhone12Pro.csv'
+    # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/20210812_MySlate_9/MySlate_9_JZs_iPhone12Pro.csv'
+    # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/20210812_MySlate_11/MySlate_11_JZs_iPhone12Pro.csv'
 
     end_frame = keyframe_arkit_bs_from_csv_file(
                     head_mesh_name, 
@@ -201,9 +201,9 @@ if __name__ == "__main__":
     #     print_bs_keyframe_at(bpy_obj_name)
 
     csv_path_list = [
-        r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/LiveLinkFace/20210812_MySlate_8/MySlate_8_JZs_iPhone12Pro.csv',
-        r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/LiveLinkFace/20210812_MySlate_9/MySlate_9_JZs_iPhone12Pro.csv',
-        r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/LiveLinkFace/20210812_MySlate_11/MySlate_11_JZs_iPhone12Pro.csv'
+        r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/20210812_MySlate_8/MySlate_8_JZs_iPhone12Pro.csv',
+        r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/20210812_MySlate_9/MySlate_9_JZs_iPhone12Pro.csv',
+        r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/20210812_MySlate_11/MySlate_11_JZs_iPhone12Pro.csv'
     ]
 
     start_frame =  end_frame + 15

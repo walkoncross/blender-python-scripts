@@ -58,7 +58,7 @@ def insert_bs_keyframe_at(bpy_obj_name, data_dict, frame_id=1):
 
 def insert_pose_keyframe_at(bpy_obj_name, pose_data_list, frame_id=1):
     """
-
+    Keyframe pose data from .csv file exported from LiveLinkFace
     """
     bone_name_list = ['Head_sk', 'eye_Left_sk', 'eye_Right_sk']
 
@@ -151,34 +151,41 @@ def keyframe_arkit_bs_from_csv_file(
     return cur_key_frame_id
 
 
-def clear_animation_data(bpy_obj_name):
+def clear_keyframed_animation_data(bpy_obj_name):
+    """Clear keyframed (pose) animation data
+    """
     if bpy_obj_name and bpy_obj_name in bpy.data.objects.keys():
         bpy_obj = bpy.data.objects[bpy_obj_name]
         bpy_obj.animation_data_clear()
 
 
-# def clear_all_animation_data():
-#     bpy_obj_name = 'Armature'
-#     clear_animation_data(bpy_obj_name)
+def clear_keyframed_shape_key_data(bpy_obj_name):
+    """Clear keyframed shape_key (blendshapes) data
+    """
+    if bpy_obj_name and bpy_obj_name in bpy.data.objects.keys():
+        bpy_obj = bpy.data.objects[bpy_obj_name]
+        bpy_obj.data.shape_keys.animation_data_clear()
 
 
 if __name__ == "__main__":
     head_mesh_name = 'POLYWINK_Bella.001'
     teeth_mesh_name = ''
     armature_name = 'Armature'
-    time_downsample_rate = 2  # 60fps -> 30 fps
+    # time_downsample_rate = 4  # 100 fps -> 25 fps
+    time_downsample_rate = 2  # 60 fps -> 30 fps
+    # time_downsample_rate = 1  # 25 fps -> 25 fps
 
     start_frame = 1
 
-    clear_animation_data(head_mesh_name)
-    clear_animation_data(teeth_mesh_name)
-    clear_animation_data(armature_name)
+    clear_keyframed_shape_key_data(head_mesh_name)
+    clear_keyframed_shape_key_data(teeth_mesh_name)
+    clear_keyframed_animation_data(armature_name)
 
-    # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/LiveLinkFace_bs_conversion/20210112_MySlate_2/MySlate_2_JAMESs_iPhone12Pro.csv'
-    csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/LiveLinkFace_bs_conversion/20210129_MySlate_3/MySlate_3_JAMESs_iPhone12Pro.csv'
-    # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/LiveLinkFace/20210812_MySlate_8/MySlate_8_JZs_iPhone12Pro.csv'
-    # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/LiveLinkFace/20210812_MySlate_9/MySlate_9_JZs_iPhone12Pro.csv'
-    # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/LiveLinkFace/20210812_MySlate_11/MySlate_11_JZs_iPhone12Pro.csv'
+    # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/20210112_MySlate_2/MySlate_2_JAMESs_iPhone12Pro.csv'
+    csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/20210129_MySlate_3/MySlate_3_JAMESs_iPhone12Pro.csv'
+    # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/20210812_MySlate_8/MySlate_8_JZs_iPhone12Pro.csv'
+    # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/20210812_MySlate_9/MySlate_9_JZs_iPhone12Pro.csv'
+    # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/20210812_MySlate_11/MySlate_11_JZs_iPhone12Pro.csv'
 
     end_frame = keyframe_arkit_bs_from_csv_file(
         head_mesh_name,
@@ -196,9 +203,9 @@ if __name__ == "__main__":
     #     print_bs_keyframe_at(bpy_obj_name)
 
     csv_path_list = [
-        r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/LiveLinkFace/20210812_MySlate_8/MySlate_8_JZs_iPhone12Pro.csv',
-        r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/LiveLinkFace/20210812_MySlate_9/MySlate_9_JZs_iPhone12Pro.csv',
-        r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/LiveLinkFace/20210812_MySlate_11/MySlate_11_JZs_iPhone12Pro.csv'
+        r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/20210812_MySlate_8/MySlate_8_JZs_iPhone12Pro.csv',
+        r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/20210812_MySlate_9/MySlate_9_JZs_iPhone12Pro.csv',
+        r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/20210812_MySlate_11/MySlate_11_JZs_iPhone12Pro.csv'
     ]
 
     start_frame = end_frame + 15
