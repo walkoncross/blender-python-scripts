@@ -27,10 +27,10 @@ def clear_keyframed_shape_key_data(bpy_obj_name):
 
 
 if __name__ == "__main__":
-    head_mesh_name = 'Wolf3D_Head'
-    teeth_mesh_name = 'Wolf3D_Teeth'
-    armature_name = 'AvatarRoot'
+    head_mesh_obj_name = 'Wolf3D_Head'
+    teeth_mesh_obj_name = 'Wolf3D_Teeth'
+    armature_obj_name = 'AvatarRoot'
 
-    clear_keyframed_shape_key_data(head_mesh_name)
-    clear_keyframed_shape_key_data(teeth_mesh_name)
-    clear_keyframed_animation_data(armature_name)
+    clear_keyframed_shape_key_data(head_mesh_obj_name)
+    clear_keyframed_shape_key_data(teeth_mesh_obj_name)
+    clear_keyframed_animation_data(armature_obj_name)

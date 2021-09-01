@@ -101,12 +101,12 @@ def insert_pose_keyframe_at(bpy_obj_name, pose_data_list, frame_id=1):
 
 
 def keyframe_arkit_bs_from_csv_file(
-    head_mesh_name,
+    head_mesh_obj_name,
     csv_path,
     start_frame=1,
     time_downsample_rate=2,
-    teeth_mesh_name=None,
-    armature_name=None,
+    teeth_mesh_obj_name=None,
+    armature_obj_name=None,
 ):
     """Read arkit bs list from a .csv file and keyframe them on to a rigged character.
 
@@ -130,13 +130,13 @@ def keyframe_arkit_bs_from_csv_file(
 
         # print('arkit_bs: ')
         # print(arkit_bs)
-        if head_mesh_name and head_mesh_name in bpy.data.objects.keys():
-            insert_bs_keyframe_at(head_mesh_name, arkit_bs, cur_key_frame_id)
+        if head_mesh_obj_name and head_mesh_obj_name in bpy.data.objects.keys():
+            insert_bs_keyframe_at(head_mesh_obj_name, arkit_bs, cur_key_frame_id)
 
-        if teeth_mesh_name and teeth_mesh_name in bpy.data.objects.keys():
-            insert_bs_keyframe_at(teeth_mesh_name, arkit_bs, cur_key_frame_id)
+        if teeth_mesh_obj_name and teeth_mesh_obj_name in bpy.data.objects.keys():
+            insert_bs_keyframe_at(teeth_mesh_obj_name, arkit_bs, cur_key_frame_id)
 
-        if armature_name and armature_name in bpy.data.armatures.keys():
+        if armature_obj_name and armature_obj_name in bpy.data.armatures.keys():
             pose_data = frame_data[-9:]
 
             # print('Pose Data: ')
@@ -144,7 +144,7 @@ def keyframe_arkit_bs_from_csv_file(
 
             pose_data_list = pose_data.to_list()
             insert_pose_keyframe_at(
-                armature_name, pose_data_list, cur_key_frame_id)
+                armature_obj_name, pose_data_list, cur_key_frame_id)
 
     bpy.ops.object.mode_set(mode='OBJECT', toggle=False)
 
@@ -168,18 +168,18 @@ def clear_keyframed_shape_key_data(bpy_obj_name):
 
 
 if __name__ == "__main__":
-    head_mesh_name = 'POLYWINK_Bella.001'
-    teeth_mesh_name = ''
-    armature_name = 'Armature'
+    head_mesh_obj_name = 'POLYWINK_Bella.001'
+    teeth_mesh_obj_name = ''
+    armature_obj_name = 'Armature'
     # time_downsample_rate = 4  # 100 fps -> 25 fps
     time_downsample_rate = 2  # 60 fps -> 30 fps
     # time_downsample_rate = 1  # 25 fps -> 25 fps
 
     start_frame = 1
 
-    clear_keyframed_shape_key_data(head_mesh_name)
-    clear_keyframed_shape_key_data(teeth_mesh_name)
-    clear_keyframed_animation_data(armature_name)
+    clear_keyframed_shape_key_data(head_mesh_obj_name)
+    clear_keyframed_shape_key_data(teeth_mesh_obj_name)
+    clear_keyframed_animation_data(armature_obj_name)
 
     # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/20210112_MySlate_2/MySlate_2_JAMESs_iPhone12Pro.csv'
     csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/20210129_MySlate_3/MySlate_3_JAMESs_iPhone12Pro.csv'
@@ -188,12 +188,12 @@ if __name__ == "__main__":
     # csv_path = r'/Users/zhaoyafei/Downloads/LiveLinkFace_data/20210812_MySlate_11/MySlate_11_JZs_iPhone12Pro.csv'
 
     end_frame = keyframe_arkit_bs_from_csv_file(
-        head_mesh_name,
+        head_mesh_obj_name,
         csv_path,
         start_frame,
         time_downsample_rate,
-        teeth_mesh_name,
-        armature_name)
+        teeth_mesh_obj_name,
+        armature_obj_name)
 
     print('===> end_frame: ', end_frame)
 
@@ -213,12 +213,12 @@ if __name__ == "__main__":
     for csv_path in csv_path_list:
         # clear_all_animation_data()
         end_frame = keyframe_arkit_bs_from_csv_file(
-            head_mesh_name,
+            head_mesh_obj_name,
             csv_path,
             start_frame,
             time_downsample_rate,
-            teeth_mesh_name,
-            armature_name)
+            teeth_mesh_obj_name,
+            armature_obj_name)
         start_frame = end_frame + 15
 
         print('===> end_frame: ', end_frame)
