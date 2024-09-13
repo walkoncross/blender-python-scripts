@@ -1,3 +1,7 @@
+"""Show all hidden objects in the current scene.
+
+Author: zhaoyafei0210@gmail.com
+"""
 import bpy
 
 

@@ -1,3 +1,7 @@
+"""    Import a .gltf/.glb file from the specified path and perform basic operations on the imported objects.
+
+Author: zhaoyafei0210@gmail.com
+"""
 import bpy
 
 
