@@ -29,6 +29,9 @@ def add_sound_strip(audio_file_path: str) -> None:
 
     print(f"Audio successfully added: {audio_file_path}")
 
-# Call the function and pass the audio file path
-audio_path = "/Users/zhaoyafei/work/NIM-audio2face-visualization/viz-threejs/assets/out.wav"
-add_sound_strip(audio_path)
+
+if __name__=='__main__':
+    # Call the function and pass the audio file path
+    audio_path = "/Users/zhaoyafei/work/NIM-audio2face-visualization/viz-threejs/assets/out.wav"
+    add_sound_strip(audio_path)
+

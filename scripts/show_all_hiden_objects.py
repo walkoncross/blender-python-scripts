@@ -19,4 +19,5 @@ def show_all_hidden_objects() -> None:
                 bpy.ops.object.select_all(action='DESELECT')
             break
 
-show_all_hidden_objects()
+if __name__=='__main__':
+    show_all_hidden_objects()

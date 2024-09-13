@@ -18,5 +18,5 @@ def hide_all_objects() -> None:
                 bpy.ops.object.select_all(action='DESELECT')
             break
 
-
-hide_all_objects()
+if __name__=='__main__':
+    hide_all_objects()

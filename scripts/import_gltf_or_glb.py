@@ -64,9 +64,10 @@ def import_gltf_or_glb(
     bpy.context.view_layer.update()
 
 
-# Example call
-file_path = "/Users/zhaoyafei/Downloads/nv-audio2face/mark_mid_v5.glb"
-import_gltf_or_glb(file_path, hide_all=True, delete_all=False)
+if __name__=='__main__':
+    # Example call
+    file_path = "/Users/zhaoyafei/Downloads/nv-audio2face/mark_mid_v5.glb"
+    import_gltf_or_glb(file_path, hide_all=True, delete_all=False)
 
-# file_path = "/Users/zhaoyafei/Downloads/nv-audio2face/claire_mid_v5.glb"
-# import_gltf_or_glb(file_path, hide_all=False, delete_all=False)
+    # file_path = "/Users/zhaoyafei/Downloads/nv-audio2face/claire_mid_v5.glb"
+    # import_gltf_or_glb(file_path, hide_all=False, delete_all=False)
