@@ -282,10 +282,13 @@ if __name__ == "__main__":
     bone_name_list = ['head']
 
     start_frame = 1
+
+    input_fps = 60
+    target_fps = 30
     # time_downsample_rate = 4  # 100 fps -> 25 fps
     # time_downsample_rate = 2  # 60 fps -> 30 fps
-    time_downsample_rate = 1  # 25 fps -> 25 fps
-
+    time_downsample_rate = input_fps / target_fps
+    
     for mesh_obj in arkit_rigged_mesh_obj_names:
         clear_keyframed_animation_data(mesh_obj)
         
