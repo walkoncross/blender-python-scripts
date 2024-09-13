@@ -1,9 +1,14 @@
+"""Load and parse the contents of a Nvidia audio2face NIM returned CSV file from the specified path.
+
+Author: zhaoyafei0210@gmail.com
+"""
+
 import csv
 
 
 def load_nv_a2f_csv(csv_path: str) -> dict:
     '''
-    Load and parse the contents of a LiveLinkFace CSV file from the specified path.
+    Load and parse the contents of a Nvidia audio2face NIM returned CSV file from the specified path.
 
     This function reads the CSV file, extracts the header row and all data rows.
 

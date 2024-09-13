@@ -1,3 +1,7 @@
+"""Load and parse the contents of a LiveLinkFace CSV file from the specified path.
+
+Author: zhaoyafei0210@gmail.com
+"""
 import csv
 
 
