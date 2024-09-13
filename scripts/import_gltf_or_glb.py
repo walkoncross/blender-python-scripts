@@ -24,7 +24,7 @@ def import_gltf_or_glb(
     scale: list | None = None,
     hide_all: bool = True,
     delete_all: bool = False
-) -> None:
+) -> list[bpy.types.Object]:
     """
     Import a .gltf/.glb file from the specified path and perform basic operations on the imported objects.
 
@@ -33,6 +33,9 @@ def import_gltf_or_glb(
     - scale (tuple): Scale of the imported object, default is (1, 1, 1).
     - hide_all (bool): Whether to hide all objects in the current scene before importing, default is True.
     - delete_all (bool): Whether to delete all objects in the current scene before importing, default is True.
+
+    Returns:
+    - list[bpy.types.Object]: List of imported objects.
     """
     if delete_all:
         # Delete all objects in the current scene (optional)
@@ -63,11 +66,16 @@ def import_gltf_or_glb(
     # Update the scene to apply changes
     bpy.context.view_layer.update()
 
+    return imported_objects
+
 
 if __name__=='__main__':
     # Example call
     file_path = "/Users/zhaoyafei/Downloads/nv-audio2face/mark_mid_v5.glb"
-    import_gltf_or_glb(file_path, hide_all=True, delete_all=False)
+    imported_objects = import_gltf_or_glb(file_path, hide_all=True, delete_all=False)
+
+    print(f'imported_objects: {imported_objects}')
 
     # file_path = "/Users/zhaoyafei/Downloads/nv-audio2face/claire_mid_v5.glb"
-    # import_gltf_or_glb(file_path, hide_all=False, delete_all=False)
+    # imported_objects = import_gltf_or_glb(file_path, hide_all=False, delete_all=False)
+    # print(f'imported_objects: {imported_objects}')
