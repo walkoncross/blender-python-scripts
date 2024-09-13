@@ -172,7 +172,6 @@ def keyframe_arkit_bs_from_csv_file(
 
     loaded_anim_data = load_nv_a2f_csv(csv_path)
 
-
     # time_downsample_rate = 2  # 60fps->30fps
     # time_downsample_rate = 1
     frame_num = len(loaded_anim_data['blendshape_frames']) // time_downsample_rate
@@ -252,8 +251,37 @@ def clear_keyframed_shape_key_data(bpy_obj_name):
         bpy_obj.data.shape_keys.animation_data_clear()
 
 
+
+def add_sound_strip(audio_file_path: str) -> None:
+    '''
+    Adds an sound strip to the current Blender scene.
+    '''
+    # Ensure the current scene has an audio sequence
+    if not bpy.context.scene.sequence_editor:
+        bpy.context.scene.sequence_editor_create()
+
+    # Add audio sequence
+    seq_editor = bpy.context.scene.sequence_editor
+    sound_strip = seq_editor.sequences.new_sound(
+        name="Audio strip",
+        filepath=audio_file_path,
+        channel=1,
+        frame_start=1
+    )
+
+    # Set audio to loop playback
+    sound_strip.volume = 1.0  # Set volume
+
+    # Enable audio playback
+    bpy.context.scene.sync_mode = 'AUDIO_SYNC'
+
+    print(f"Audio successfully added: {audio_file_path}")
+
+
 if __name__ == "__main__":
-    arkit_rigged_mesh_obj_names = ['c_headWatertight_mid', 'c_bottomDenture_mid', 'c_tongue_mid']
+    arkit_rigged_mesh_obj_names = ['c_headWatertight_mid', 'c_bottomDenture_mid', 'c_tongue_mid'] # for mark
+    arkit_rigged_mesh_obj_names += ['c_headWatertight_mid.001', 'c_bottomDenture_mid.001', 'c_tongue_mid.001'] # for claire
+    
     armature_obj_name = 'mark_bs_arkit'
     bone_name_list = ['head']
 
@@ -269,6 +297,13 @@ if __name__ == "__main__":
     clear_keyframed_animation_data(armature_obj_name)
 
     csv_path = r'/Users/zhaoyafei/work/NIM-audio2face-visualization/viz-threejs/assets/animation_frames.csv'
+    audio_path = r'/Users/zhaoyafei/work/NIM-audio2face-visualization/viz-threejs/assets/out.wav'
+
+    print('===> adding sound strip to the timeline:')
+    add_sound_strip(audio_path)
+    print('===> end adding sound strip to the timeline')
+
+    print('===> keyframing arkit bs from csv file:')
     
     end_frame = keyframe_arkit_bs_from_csv_file(
         arkit_rigged_mesh_obj_names,
@@ -277,5 +312,6 @@ if __name__ == "__main__":
         time_downsample_rate,
         armature_obj_name,
         bone_name_list)
-
+    print('===> end keyframing arkit bs from csv file')
     print('===> end_frame: ', end_frame)
+    
