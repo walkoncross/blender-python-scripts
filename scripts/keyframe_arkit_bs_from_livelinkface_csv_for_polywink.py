@@ -277,9 +277,9 @@ def add_sound_strip(audio_file_path: str) -> None:
     print(f"Audio successfully added: {audio_file_path}")
           
 if __name__ == "__main__":
-    arkit_rigged_mesh_obj_names = ['POLYWINK_Bella.001']
+    arkit_rigged_mesh_obj_names = ['POLYWINK_Bella']
     armature_obj_name = 'Armature'
-    bone_name_list = ['Head', 'LeftEye', 'RightEye']
+    bone_name_list = ['Head_sk']
 
     start_frame = 1
 
@@ -287,7 +287,7 @@ if __name__ == "__main__":
     target_fps = 30
     # time_downsample_rate = 4  # 100 fps -> 25 fps
     # time_downsample_rate = 2  # 60 fps -> 30 fps
-    time_downsample_rate = input_fps / target_fps
+    time_downsample_rate = int(input_fps / target_fps)
 
     for mesh_obj in arkit_rigged_mesh_obj_names:
         clear_keyframed_animation_data(mesh_obj)
