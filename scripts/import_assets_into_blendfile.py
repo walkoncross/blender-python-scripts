@@ -33,7 +33,7 @@ if __name__=='__main__':
     parser.add_argument('--hide_all', type=bool, default=False, help='bool, Whether to hide all objects in the current scene before importing')
     parser.add_argument('--delete_all', type=bool, default=False, help='bool, Whether to delete all objects in the current scene before importing')
     parser.add_argument('--save_project', type=bool, default=False, help='bool, Whether to save the project after importing')
-    parser.add_argument('--project_path', type=str, default=None, help='Where to save the new project')
+    parser.add_argument('--save_path', type=str, default=None, help='Where to save the blender project, default to the same directory as the input file')
 
     args = parser.parse_args(argv)
 
@@ -82,7 +82,7 @@ if __name__=='__main__':
 
     if args.save_project:
         print('---> Saving the project...')
-        if args.project_path is None:
-            args.project_path = osp.splitext(args.input)[0] + '.blend'
-        bpy.ops.wm.save_mainfile(filepath=args.project_path)
-        print(f'---> Saved into {args.project_path}')
+        if args.save_path is None:
+            args.save_path = osp.splitext(args.input)[0] + '.blend'
+        bpy.ops.wm.save_mainfile(filepath=args.save_path)
+        print(f'---> Saved into {args.save_path}')
