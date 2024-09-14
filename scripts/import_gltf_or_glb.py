@@ -47,7 +47,9 @@ def import_gltf_or_glb(
         hide_all_objects()
 
     # Import the .glb file
-    bpy.ops.import_scene.gltf(filepath=file_path)
+    # bpy.ops.import_scene.gltf(filepath=file_path)
+    # fix issue: bones turned into icosphere (https://www.reddit.com/r/blenderhelp/comments/1bo83cx/hello_please_i_am_trying_to_export_a_file_as_gltf/)
+    bpy.ops.import_scene.gltf(filepath=file_path, bone_heuristic='TEMPERANCE') 
 
     # Get the imported objects
     imported_objects = bpy.context.selected_objects
