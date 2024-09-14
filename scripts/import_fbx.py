@@ -21,7 +21,7 @@ def hide_all_objects() -> None:
 
 def import_fbx(
     file_path: str,
-    scale: list | None = None,
+    scale: tuple | None = None,
     hide_all: bool = True,
     delete_all: bool = False
 ) -> list[bpy.types.Object]:
@@ -30,7 +30,7 @@ def import_fbx(
 
     Parameters:
     - file_path (str): Path to the .fbx file.
-    - scale (tuple): Scale of the imported object, default is (1, 1, 1).
+    - scale (tuple or None): Scale of the imported object, default is None for (1, 1, 1).
     - hide_all (bool): Whether to hide all objects in the current scene before importing, default is True.
     - delete_all (bool): Whether to delete all objects in the current scene before importing, default is True.
 
