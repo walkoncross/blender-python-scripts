@@ -6,7 +6,10 @@ import bpy
 import numpy as np
 
 
-def create_shape_key_from_vertices(
+__all__ = ['add_shape_key_from_vertices']
+
+
+def add_shape_key_from_vertices(
         mesh_obj_name: str, 
         target_vertices: list | np.ndarray,
         shape_key_names: str | list[str] = 'Key'
@@ -137,20 +140,20 @@ if __name__ == "__main__":
 
     target_vertices = vertices_array * 2
 
-    shape_key_names = create_shape_key_from_vertices(mesh_obj_name, target_vertices)
+    shape_key_names = add_shape_key_from_vertices(mesh_obj_name, target_vertices)
     print(f'--> Created shape_key_names: {shape_key_names}')
 
     # create Shape Key
-    shape_key_names = create_shape_key_from_vertices(mesh_obj_name, target_vertices, "ScaleUp")
+    shape_key_names = add_shape_key_from_vertices(mesh_obj_name, target_vertices, "ScaleUp")
     print(f'--> Created shape_key_names: {shape_key_names}')
 
     target_vertices2 = vertices_array * 0.5
-    shape_key_names = create_shape_key_from_vertices(mesh_obj_name, target_vertices, "ScaleDown")
+    shape_key_names = add_shape_key_from_vertices(mesh_obj_name, target_vertices, "ScaleDown")
     print(f'--> Created shape_key_names: {shape_key_names}')
 
     target_vertices3 = np.stack((target_vertices, target_vertices2), axis=0)
-    shape_key_names = create_shape_key_from_vertices(mesh_obj_name, target_vertices3)
+    shape_key_names = add_shape_key_from_vertices(mesh_obj_name, target_vertices3)
     print(f'--> Created shape_key_names: {shape_key_names}')
 
-    shape_key_names = create_shape_key_from_vertices(mesh_obj_name, target_vertices3, ["ScaleUp2", "ScaleDown2"])
+    shape_key_names = add_shape_key_from_vertices(mesh_obj_name, target_vertices3, ["ScaleUp2", "ScaleDown2"])
     print(f'--> Created shape_key_names: {shape_key_names}')
