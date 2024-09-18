@@ -5,7 +5,7 @@ Author: zhaoyafei0210@gmail.com
 import bpy
 import numpy as np
 
-def export_face_vertex_indices(mesh_name, expected_num_edges=None):
+def get_face_vertex_indices_as_numpy(mesh_name, expected_num_edges=None):
     """
     Export face vertex indices of a mesh object to a NumPy array.
 
@@ -49,6 +49,6 @@ def export_face_vertex_indices(mesh_name, expected_num_edges=None):
 if __name__ == "__main__":
     mesh_name = "Cube"  # Replace with the name of your mesh object
     expected_num_edges = None  # Set to 3 for triangles, 4 for quads, or None for no check
-    vertex_indices_array = export_face_vertex_indices(mesh_name, expected_num_edges)
+    vertex_indices_array = get_face_vertex_indices_as_numpy(mesh_name, expected_num_edges)
     print(vertex_indices_array)
 
