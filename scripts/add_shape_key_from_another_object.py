@@ -66,39 +66,45 @@ def add_shape_key_from_target_object(
 
 if __name__ == '__main__':
     basis_obj_name = 'Cube'
+
+    create_new_cubes = True
     # basis_obj_name = 'POLYWINK_Bella'
     # target_obj_name = 'jawOpen'
     # target_obj_name = 'cheekPuff'
     # target_obj_name = 'mouthRight'
 
-    # create a bigger cube with size 4
-    bpy.ops.mesh.primitive_cube_add(
-        size=4, 
-        enter_editmode=False, 
-        align='WORLD', 
-        location=(0, 0, 0), 
-        scale=(1, 1, 1)
-    )
-
-    # rename it
     target_obj_name = 'cube-bigger'
-    bpy.context.object.name = target_obj_name
+
+    if create_new_cubes:
+        # create a bigger cube with size 4
+        bpy.ops.mesh.primitive_cube_add(
+            size=4, 
+            enter_editmode=False, 
+            align='WORLD', 
+            location=(0, 0, 0), 
+            scale=(1, 1, 1)
+        )
+
+        # rename it
+        bpy.context.object.name = target_obj_name
 
     # add shape key
     add_shape_key_from_target_object(basis_obj_name, target_obj_name, 'ScaleUp')
 
-    # create a smaller cube with size 1
-    bpy.ops.mesh.primitive_cube_add(
-        size=1, 
-        enter_editmode=False, 
-        align='WORLD', 
-        location=(0, 0, 0), 
-        scale=(1, 1, 1)
-    )
-
-    # rename it
     target_obj_name = 'cube-smaller'
-    bpy.context.object.name = target_obj_name
+
+    if create_new_cubes:
+        # create a smaller cube with size 1
+        bpy.ops.mesh.primitive_cube_add(
+            size=1, 
+            enter_editmode=False, 
+            align='WORLD', 
+            location=(0, 0, 0), 
+            scale=(1, 1, 1)
+        )
+
+        # rename it
+        bpy.context.object.name = target_obj_name
 
     # add shape key
     add_shape_key_from_target_object(basis_obj_name, target_obj_name, 'ScaleDown')
