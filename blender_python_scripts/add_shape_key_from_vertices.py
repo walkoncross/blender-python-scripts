@@ -148,12 +148,20 @@ if __name__ == "__main__":
     print(f'--> Created shape_key_names: {shape_key_names}')
 
     target_vertices2 = vertices_array * 0.5
-    shape_key_names = add_shape_key_from_vertices(mesh_obj_name, target_vertices, "ScaleDown")
+    shape_key_names = add_shape_key_from_vertices(mesh_obj_name, target_vertices2, "ScaleDown")
     print(f'--> Created shape_key_names: {shape_key_names}')
 
-    target_vertices3 = np.stack((target_vertices, target_vertices2), axis=0)
-    shape_key_names = add_shape_key_from_vertices(mesh_obj_name, target_vertices3)
+    target_vertices3 = vertices_array * np.array([0.707, 0.707, 2])
+    shape_key_names = add_shape_key_from_vertices(mesh_obj_name, target_vertices3, "Stretch")
     print(f'--> Created shape_key_names: {shape_key_names}')
 
-    shape_key_names = add_shape_key_from_vertices(mesh_obj_name, target_vertices3, ["ScaleUp2", "ScaleDown2"])
+    target_vertices4 = vertices_array * np.array([1.414, 1.414, 0.5])
+    shape_key_names = add_shape_key_from_vertices(mesh_obj_name, target_vertices4, "Squash")
+    print(f'--> Created shape_key_names: {shape_key_names}')
+
+    target_vertices5 = np.stack((target_vertices, target_vertices2), axis=0)
+    shape_key_names = add_shape_key_from_vertices(mesh_obj_name, target_vertices5)
+    print(f'--> Created shape_key_names: {shape_key_names}')
+
+    shape_key_names = add_shape_key_from_vertices(mesh_obj_name, target_vertices5, ["ScaleUp2", "ScaleDown2"])
     print(f'--> Created shape_key_names: {shape_key_names}')
