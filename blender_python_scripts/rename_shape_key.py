@@ -4,6 +4,7 @@ Author: zhaoyafei0210@gmail.com
 """
 import bpy
 
+__all__ = ['rename_shape_key']
 
 def rename_shape_key(obj_name, key_name, new_key_name):
     """ rename a shape key, shape_keys[key_name].name = new_key_name

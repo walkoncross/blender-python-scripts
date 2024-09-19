@@ -5,6 +5,9 @@ Author: zhaoyafei0210@gmail.com
 import bpy
 
 
+__all__ = ['add_shape_key_from_target_object']
+
+
 def add_shape_key_from_target_object(
         basis_obj_name, 
         target_obj_name, 
@@ -67,7 +70,7 @@ def add_shape_key_from_target_object(
 if __name__ == '__main__':
     basis_obj_name = 'Cube'
 
-    create_new_cubes = True
+    create_new_cubes = False
     # basis_obj_name = 'POLYWINK_Bella'
     # target_obj_name = 'jawOpen'
     # target_obj_name = 'cheekPuff'

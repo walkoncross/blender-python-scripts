@@ -8,6 +8,9 @@ Author: zhaoyafei0210@gmail.com
 import bpy
 
 
+__all__ = ['reset_shape_key_values']
+
+
 def reset_shape_key_values(bpy_obj_name):
     """Reset shape key values
     """

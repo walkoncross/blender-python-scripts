@@ -8,6 +8,8 @@ import os.path as osp
 import glob
 
 
+__all = ['add_shape_key_from_another_object', 'import_multi_objs_as_shape_keys']
+
 def print_mesh_vertex(mesh_obj, first_n=8):
     print('===> print_mesh_vertex()')
     print('---> mesh object: ', mesh_obj.name)

@@ -7,6 +7,7 @@ Author: zhaoyafei0210@gmail.com
 
 import bpy
 
+__all__ = ['reset_armature_pose_bones']
 
 def reset_armature_pose_bones(
     bpy_obj_name,

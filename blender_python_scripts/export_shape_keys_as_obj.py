@@ -9,6 +9,8 @@ import os
 import os.path as osp
 
 
+__all__ = ['export_shape_keys_as_obj']
+
 
 def export_shape_keys_as_obj(obj_name, export_path):
     """

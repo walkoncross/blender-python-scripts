@@ -5,6 +5,8 @@ Author: zhaoyafei0210@gmail.com
 import bpy
 
 
+__all__ = ['import_gltf_or_glb']
+
 def hide_all_objects() -> None:
     """
     Hide all objects in the current scene

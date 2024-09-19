@@ -6,6 +6,8 @@ import bpy
 import numpy as np
 
 
+__all__ = ['get_vertices_as_numpy']
+
 def get_vertices_as_numpy(mesh_obj_name):
     """Get vertices of a mesh object as a NumPy array.
 

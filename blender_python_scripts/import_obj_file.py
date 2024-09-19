@@ -7,6 +7,8 @@ Author: zhaoyafei0210@gmail.com
 import bpy
 
 
+__all__ = ['import_obj_file']
+
 def print_mesh_vertex(mesh_obj, first_n=8):
     print('===> print_mesh_vertex()')
     print('---> mesh object: ', mesh_obj.name)

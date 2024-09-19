@@ -5,6 +5,10 @@ Author: zhaoyafei0210@gmail.com
 import bpy
 import json
 
+
+__all__ = ['get_shape_key_names', 'get_all_shape_key_names']
+
+
 def get_shape_key_names(obj_name):
     """
     Get shape-key names of a mesh object

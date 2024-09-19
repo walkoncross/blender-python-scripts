@@ -4,6 +4,8 @@ Author: zhaoyafei0210@gmail.com
 """
 import bpy
 
+__all__ = ['add_sound_strip']
+
 def add_sound_strip(audio_file_path: str) -> None:
     '''
     Adds an sound strip to the current Blender scene.

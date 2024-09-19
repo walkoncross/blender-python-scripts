@@ -4,11 +4,9 @@
 Author: zhaoyafei0210@gmail.com
 
 """
-
-import pandas
-
 import bpy
 
+__all__ = ['clear_keyframed_animation_data', 'clear_keyframed_shape_key_data']
 
 def clear_keyframed_animation_data(bpy_obj_name):
     """Clear keyframed (pose) animation data

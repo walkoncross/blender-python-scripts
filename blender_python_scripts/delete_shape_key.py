@@ -5,6 +5,9 @@ Author: zhaoyafei0210@gmail.com
 import bpy
 
 
+__all__ = ['delete_shape_key_by_name']
+
+
 def delete_shape_key_by_name(obj_name, key_name):
     """Delete a shape key by its name from the specified object.
 

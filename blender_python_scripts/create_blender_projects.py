@@ -1,20 +1,23 @@
 import bpy
 
-# create a new default project
-# bpy.ops.preferences.addon_disable(module='ComfyUI Node Editor')
-bpy.ops.wm.read_factory_settings(use_empty=False)
+__all__ = []
 
-# save project
-file_path = "./default_blender_project.blend"
-bpy.ops.wm.save_as_mainfile(filepath=file_path)
+if __name__ == "__main__":
+    # create a new default project
+    # bpy.ops.preferences.addon_disable(module='ComfyUI Node Editor')
+    bpy.ops.wm.read_factory_settings(use_empty=False)
 
-print(f"Blender project saved at: {file_path}")
+    # save project
+    file_path = "./default_blender_project.blend"
+    bpy.ops.wm.save_as_mainfile(filepath=file_path)
 
-# create a new empty project
-bpy.ops.wm.read_factory_settings(use_empty=True)
+    print(f"Blender project saved at: {file_path}")
 
-# save project
-file_path = "./empty_blender_project.blend"
-bpy.ops.wm.save_as_mainfile(filepath=file_path)
+    # create a new empty project
+    bpy.ops.wm.read_factory_settings(use_empty=True)
 
-print(f"Blender project saved at: {file_path}")
+    # save project
+    file_path = "./empty_blender_project.blend"
+    bpy.ops.wm.save_as_mainfile(filepath=file_path)
+
+    print(f"Blender project saved at: {file_path}")

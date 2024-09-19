@@ -5,6 +5,10 @@ Author: zhaoyafei0210@gmail.com
 import bpy
 import numpy as np
 
+
+__all__ = ['get_uv_coords_as_numpy']
+
+
 def get_uv_coords_as_numpy(obj_name):
     # Ensure the object exists
     obj = bpy.data.objects.get(obj_name)

@@ -5,6 +5,9 @@ Author: zhaoyafei0210@gmail.com
 import bpy
 import numpy as np
 
+
+__all__ = ['get_face_vertex_indices_as_numpy']
+
 def get_face_vertex_indices_as_numpy(mesh_name, expected_num_edges=None):
     """
     Export face vertex indices of a mesh object to a NumPy array.
