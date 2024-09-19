@@ -1,6 +1,6 @@
 *.DS_Store
 *.obj
 *.mtl
-scripts/__pycache__/
+*__pycache__/
 scripts/*.blend
 scripts/*.blend1
