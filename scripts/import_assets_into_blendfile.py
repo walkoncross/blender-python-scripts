@@ -4,7 +4,7 @@ import os.path as osp
 
 import bpy
 
-sys.path.append(osp.join(osp.dirname(osp.abspath(__file__)), "../blender_python_scripts"))
+sys.path.append(osp.join(osp.dirname(osp.abspath(__file__)), "../bpy_wrappers_zyf"))
 
 from import_fbx import import_fbx
 from import_gltf_or_glb import import_gltf_or_glb
