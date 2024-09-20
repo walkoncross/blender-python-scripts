@@ -6,6 +6,8 @@ Author: zhaoyafei0210@gmail.com
 import bpy
 # import mathutils
 
+__all__ = ['keyframe_single_shape_key', 'keyframe_shape_keys']
+
 
 def __is_valid_object(bpy_obj_name: str, type: str = 'MESH') -> bool:
     """Check if bpy_obj_name is a valid object name.

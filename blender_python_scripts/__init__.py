@@ -15,8 +15,11 @@ from .import_fbx import *
 from .import_gltf_or_glb import *
 from .import_obj_file import *
 from .import_obj_file_as_shape_key import *
+from .keyframe_pose_bones import *
+from .keyframe_shape_keys import *
 from .rename_shape_key import *
 from .reset_armature_pose_bones import *
 from .reset_shape_key_values import *
 from .set_minmax_range_for_shape_key import *
 from .show_all_hiden_objects import *
+from .uitils import *

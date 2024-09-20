@@ -7,6 +7,9 @@ import bpy
 import numpy as np
 
 
+__all__ = ['keyframe_pose_bones', 'keyframe_single_pose_bone']
+
+
 def __is_valid_object(bpy_obj_name: str, type: str = 'MESH') -> bool:
     """Check if bpy_obj_name is a valid object name.
 
