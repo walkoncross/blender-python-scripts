@@ -3,4 +3,4 @@
 *.mtl
 *__pycache__/
 scripts/*.blend
-scripts/*.blend1
+*.blend1
