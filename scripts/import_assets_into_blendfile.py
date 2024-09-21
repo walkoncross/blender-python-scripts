@@ -4,10 +4,10 @@ import os.path as osp
 
 import bpy
 
-sys.path.append(osp.join(osp.dirname(osp.abspath(__file__)), "../bpy_wrappers_zyf"))
+sys.path.append(osp.join(osp.dirname(osp.abspath(__file__)), "../"))
 
-from import_fbx import import_fbx
-from import_gltf_or_glb import import_gltf_or_glb
+from bpy_wrappers_zyf.import_fbx import import_fbx
+from bpy_wrappers_zyf.import_gltf_or_glb import import_gltf_or_glb
 
 __all__ = []
 
