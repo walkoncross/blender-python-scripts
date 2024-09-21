@@ -70,7 +70,7 @@ def keyframe_shape_keys(
             current_frame = start_frame + i
             shape_key.value = value
             shape_key.keyframe_insert(data_path="value", frame=current_frame)
-            print(f"Keyframe added for shape key '{key_name}' at frame {current_frame} with value {value}.")
+            # print(f"Keyframe added for shape key '{key_name}' at frame {current_frame} with value {value}.")
 
         if end_frame < current_frame:
             end_frame = current_frame
