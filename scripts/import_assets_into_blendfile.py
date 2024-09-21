@@ -6,8 +6,8 @@ import bpy
 
 sys.path.append(osp.join(osp.dirname(osp.abspath(__file__)), "../"))
 
-from bpy_wrappers_zyf.import_fbx import import_fbx
-from bpy_wrappers_zyf.import_gltf_or_glb import import_gltf_or_glb
+from bpy_wrappers.import_fbx import import_fbx
+from bpy_wrappers.import_gltf_or_glb import import_gltf_or_glb
 
 __all__ = []
 
