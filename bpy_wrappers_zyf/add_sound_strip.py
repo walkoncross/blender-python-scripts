@@ -6,9 +6,21 @@ import bpy
 
 __all__ = ['add_sound_strip']
 
-def add_sound_strip(audio_file_path: str) -> None:
+def add_sound_strip(
+        audio_file_path: str,
+        start_frame: int = 1,
+        strip_name: str = 'audio_strip'
+) -> None:
     '''
     Adds an sound strip to the current Blender scene.
+
+    Parameters:
+        audio_file_path: Path to the audio file to be added to the scene.
+        start_frame: Frame number where the audio strip should start.
+        strip_name: Name of the audio strip.
+
+    Returns: 
+        None
     '''
     # Ensure the current scene has an audio sequence
     if not bpy.context.scene.sequence_editor:
@@ -17,10 +29,10 @@ def add_sound_strip(audio_file_path: str) -> None:
     # Add audio sequence
     seq_editor = bpy.context.scene.sequence_editor
     sound_strip = seq_editor.sequences.new_sound(
-        name="Audio strip",
+        name=strip_name,
         filepath=audio_file_path,
         channel=1,
-        frame_start=1
+        frame_start=start_frame
     )
 
     # Set audio to loop playback
